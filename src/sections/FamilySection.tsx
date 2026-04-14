@@ -31,7 +31,6 @@ export default function FamilySection({ className = '' }: FamilySectionProps) {
         },
       });
 
-      // ENTRANCE
       scrollTl.fromTo(
         image,
         { x: '30vw', opacity: 0, scale: 0.95 },
@@ -46,7 +45,6 @@ export default function FamilySection({ className = '' }: FamilySectionProps) {
         0.1
       );
 
-      // EXIT
       scrollTl.fromTo(
         image,
         { opacity: 1 },
@@ -71,48 +69,64 @@ export default function FamilySection({ className = '' }: FamilySectionProps) {
       id="family"
       className={`gallery-section bg-[#F0EDE6] ${className}`}
     >
-      {/* Large Artwork as Background Element */}
+      {/* Photo collage on the right */}
       <div
         ref={imageRef}
-        className="absolute right-0 top-0 w-[60vw] h-full"
-        style={{
-          backgroundImage: 'url(/images/1000059988.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center left',
-        }}
-      />
+        className="absolute right-0 top-0 w-[55vw] h-full grid grid-cols-2 gap-1"
+        style={{ gridTemplateRows: '1fr 1fr' }}
+      >
+        <div className="overflow-hidden">
+          <img
+            src="/images/father_photo.jpg"
+            alt="Jacquelin with her father"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="overflow-hidden">
+          <img
+            src="/images/childhood_photo.jpg"
+            alt="Childhood"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="overflow-hidden col-span-2">
+          <img
+            src="/images/friends_photo.jpg"
+            alt="With friends"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+
+      {/* Gradient to blend photos into bg */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#F0EDE6] via-[#F0EDE6]/40 to-transparent pointer-events-none" />
 
       {/* Text Content */}
       <div
         ref={textRef}
-        className="absolute left-8 lg:left-20 top-1/2 -translate-y-1/2 max-w-md z-10"
+        className="absolute left-8 lg:left-20 top-1/2 -translate-y-1/2 max-w-sm z-10"
       >
-        <p className="reveal label-mono text-[#1A1A1A] mb-6">Family Ties</p>
+        <p className="reveal label-mono text-[#1A1A1A] mb-6">Family & Friends</p>
         <h2 className="reveal title-section text-[#1A1A1A] mb-8">
-          Two Families,<br />One Love
+          The People<br />She Loved
         </h2>
         <div className="reveal space-y-4 body-text text-[rgba(26,26,26,0.7)]">
           <p>
-            The Hellenbergs and the Rices were more than neighbors—they were 
-            family in every sense that mattered. Their homes shared walls, 
-            their children shared childhoods, and their dinner tables shared 
+            The Hellenbergs and the Rices were more than neighbors — they were
+            family in every sense that mattered. Their homes shared walls,
+            their children shared childhoods, and their dinner tables shared
             stories that stretched late into the night.
           </p>
           <p>
-            Dan's studio was Jacquelin's second home. She grew up surrounded 
-            by the smell of oil paint and turpentine, watching canvases transform 
-            from blank voids into worlds of color.
+            Dan's studio was Jacquelin's second home. She grew up surrounded
+            by the smell of oil paint and turpentine, watching canvases
+            transform from blank voids into worlds of color.
           </p>
-          <p>
-            "She had an eye," Dan once said. "The kind that sees not just 
-            what is, but what could be."
+          <p className="italic font-serif text-base text-[rgba(26,26,26,0.6)]">
+            "She had an eye. The kind that sees not just what is, but what could be."
+            <br /><span className="label-mono not-italic text-[rgba(26,26,26,0.4)] text-[9px] mt-1 block">— Dan Rice</span>
           </p>
         </div>
-      </div>
-
-      {/* Decorative Element */}
-      <div className="absolute bottom-12 left-8 lg:left-20">
-        <div className="w-16 h-px bg-[#1A1A1A]/20" />
       </div>
     </section>
   );

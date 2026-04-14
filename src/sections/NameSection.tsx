@@ -136,7 +136,7 @@ export default function NameSection({ className = '' }: NameSectionProps) {
           Hellenberg
         </h2>
         <p className="font-mono text-[clamp(14px,1.4vw,22px)] tracking-[0.1em] text-[#D4A03F] mb-4">
-          1987 — 2025
+          1965 — 2025
         </p>
         <p className="text-[clamp(12px,1vw,15px)] text-[rgba(247,247,245,0.72)] font-light tracking-wide">
           Artist. Daughter. Friend.
