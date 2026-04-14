@@ -6,6 +6,7 @@ import ArtworkSection from './sections/ArtworkSection';
 import FamilySection from './sections/FamilySection';
 import GallerySection from './sections/GallerySection';
 import MemorySection from './sections/MemorySection';
+import PaintCursor from './components/PaintCursor';
 import './App.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -14,7 +15,6 @@ function App() {
   const mainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Global snap for pinned sections
     const timer = setTimeout(() => {
       const pinned = ScrollTrigger.getAll()
         .filter(st => st.vars.pin)
@@ -62,9 +62,24 @@ function App() {
 
   return (
     <div ref={mainRef} className="relative bg-[#F8F7F4]">
+      {/* Dan Rice Painting Backdrop — fixed, lighter composition */}
+      <div
+        className="fixed inset-0 pointer-events-none z-0"
+        style={{
+          backgroundImage: 'url(/images/1000059979.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.12,
+          mixBlendMode: 'multiply',
+        }}
+      />
+
       {/* Canvas Texture Overlay */}
       <div className="canvas-texture" />
-      
+
+      {/* Paint Cursor Effect — desktop only */}
+      <PaintCursor />
+
       {/* Navigation */}
       <nav className="nav-minimal">
         <a href="#hero">Jacquelin Anne Hellenberg</a>
@@ -77,7 +92,7 @@ function App() {
       </nav>
       
       {/* Sections */}
-      <main className="relative">
+      <main className="relative z-10">
         <HeroSection className="z-10" />
         <ArtworkSection className="z-20" />
         <FamilySection className="z-30" />
