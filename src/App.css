@@ -1,0 +1,71 @@
+/* Memorial Website - Dan Rice Aesthetic */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--rice-white);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--rice-charcoal);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--rice-black);
+}
+
+/* Selection */
+::selection {
+  background: rgba(212, 175, 55, 0.3);
+  color: inherit;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 1px solid var(--rice-gold);
+  outline-offset: 2px;
+}
+
+/* Image loading */
+img {
+  background: linear-gradient(135deg, var(--rice-gray) 0%, var(--rice-cream) 100%);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .nav-minimal {
+    padding: 1rem !important;
+  }
+  
+  .nav-minimal a:first-child {
+    display: none;
+  }
+  
+  .gallery-section {
+    min-height: 100svh;
+  }
+}

@@ -1,0 +1,280 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dan Rice / Yves Klein Inspired Palette */
+    --rice-white: #F8F7F4;
+    --rice-cream: #F0EDE6;
+    --rice-gray: #E8E5DE;
+    --rice-charcoal: #2A2A2A;
+    --rice-black: #1A1A1A;
+    
+    /* Color Field Accents from the paintings */
+    --klein-blue: #002FA7;
+    --rice-aqua: #7EC8C8;
+    --rice-gold: #D4AF37;
+    --rice-ochre: #C9A227;
+    --rice-pink: #E8B4B4;
+    --rice-coral: #E07A5F;
+    
+    /* Spiritual void - deep space */
+    --void-deep: #0D0D0D;
+    --void-soft: #1C1C1C;
+    
+    /* Text colors */
+    --text-primary: #1A1A1A;
+    --text-secondary: rgba(26, 26, 26, 0.65);
+    --text-light: #F8F7F4;
+    --text-light-dim: rgba(248, 247, 244, 0.7);
+    
+    --radius: 0px;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--rice-white);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    font-weight: 400;
+  }
+  
+  .font-mono {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+}
+
+@layer components {
+  /* Gallery-style section */
+  .gallery-section {
+    width: 100vw;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Artwork frame - like a museum piece */
+  .artwork-frame {
+    position: relative;
+    background: var(--rice-white);
+    box-shadow: 
+      0 0 0 1px rgba(0,0,0,0.05),
+      0 20px 60px rgba(0,0,0,0.1),
+      0 40px 100px rgba(0,0,0,0.05);
+  }
+  
+  /* Floating text - ethereal */
+  .floating-text {
+    position: absolute;
+    z-index: 10;
+  }
+  
+  /* Color field background */
+  .color-field {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9;
+  }
+  
+  /* Void space - Klein inspired */
+  .void-space {
+    background: var(--void-deep);
+    position: relative;
+  }
+  
+  .void-space::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+    pointer-events: none;
+  }
+  
+  /* Grain texture - like canvas */
+  .canvas-texture {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+  
+  /* Minimal navigation */
+  .nav-minimal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    mix-blend-mode: difference;
+  }
+  
+  .nav-minimal a {
+    color: var(--rice-white);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+  
+  .nav-minimal a:hover {
+    opacity: 1;
+  }
+  
+  /* Typography styles */
+  .title-hero {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+  
+  .title-section {
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.2;
+  }
+  
+  .body-text {
+    font-size: clamp(0.875rem, 1.1vw, 1rem);
+    line-height: 1.8;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+  
+  .label-mono {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    opacity: 0.5;
+  }
+  
+  /* Gallery grid - masonry */
+  .masonry-grid {
+    column-count: 3;
+    column-gap: 2px;
+  }
+  
+  @media (max-width: 1024px) {
+    .masonry-grid { column-count: 2; }
+  }
+  
+  @media (max-width: 640px) {
+    .masonry-grid { column-count: 1; }
+  }
+  
+  .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .masonry-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.6s ease, filter 0.6s ease;
+    filter: grayscale(20%);
+  }
+  
+  .masonry-item:hover img {
+    transform: scale(1.02);
+    filter: grayscale(0%);
+  }
+  
+  /* Candle element */
+  .candle-glow {
+    animation: candlePulse 4s ease-in-out infinite;
+  }
+  
+  @keyframes candlePulse {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+  
+  /* Scroll indicator */
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, currentColor, transparent);
+    animation: scrollDown 2s ease-in-out infinite;
+  }
+  
+  @keyframes scrollDown {
+    0%, 100% { transform: translateY(0); opacity: 0.5; }
+    50% { transform: translateY(10px); opacity: 1; }
+  }
+  
+  /* Memory card */
+  .memory-card {
+    background: rgba(255,255,255,0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,0,0,0.05);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .memory-card:hover {
+    background: rgba(255,255,255,0.8);
+    transform: translateY(-2px);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Blend modes for artwork integration */
+  .blend-multiply {
+    mix-blend-mode: multiply;
+  }
+  
+  .blend-screen {
+    mix-blend-mode: screen;
+  }
+  
+  .blend-overlay {
+    mix-blend-mode: overlay;
+  }
+}
