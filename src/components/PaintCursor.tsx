@@ -14,7 +14,17 @@ export default function PaintCursor() {
     const W = window.innerWidth;
     const H = window.innerHeight;
 
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
+    const renderer = (() => {
+      try {
+        const r = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
+        if (!r.getContext()) { r.dispose(); return null; }
+        return r;
+      } catch {
+        return null;
+      }
+    })();
+    if (!renderer) return;
+
     renderer.setSize(W, H);
     renderer.setPixelRatio(1);
     renderer.autoClear = false;
