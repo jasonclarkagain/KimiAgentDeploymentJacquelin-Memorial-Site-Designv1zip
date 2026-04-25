@@ -6,7 +6,6 @@ import ArtworkSection from './sections/ArtworkSection';
 import FamilySection from './sections/FamilySection';
 import GallerySection from './sections/GallerySection';
 import MemorySection from './sections/MemorySection';
-import PaintCursor from './components/PaintCursor';
 import './App.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -76,9 +75,6 @@ function App() {
 
       {/* Canvas Texture Overlay */}
       <div className="canvas-texture" />
-
-      {/* Paint Cursor Effect — desktop only */}
-      <PaintCursor />
 
       {/* Navigation */}
       <nav className="nav-minimal">
